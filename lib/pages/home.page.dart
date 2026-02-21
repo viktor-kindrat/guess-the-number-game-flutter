@@ -8,12 +8,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _selectedTab = 1;
 
-  void _incrementCounter() {
+  void _onMenuTap(int index) {
     setState(() {
-      _counter++;
+      _selectedTab = index;
     });
+  }
+
+  List<BottomNavigationBarItem> get _bottomMenu {
+    return [
+      BottomNavigationBarItem(
+        icon: Icon(
+          _selectedTab == 0 ? Icons.leaderboard : Icons.leaderboard_outlined,
+        ),
+        label: "Leaders",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(_selectedTab == 1 ? Icons.gamepad : Icons.gamepad_outlined),
+        label: "Play",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(
+          _selectedTab == 2 ? Icons.settings : Icons.settings_outlined,
+        ),
+        label: "Settings",
+      ),
+    ];
   }
 
   @override
@@ -26,17 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard),
-            label: "Leaderboard",
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.gamepad), label: "Play"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
-          ),
-        ],
+        currentIndex: _selectedTab,
+        onTap: _onMenuTap,
+        selectedIconTheme: IconThemeData(size: 32),
+        items: _bottomMenu,
       ),
     );
   }
