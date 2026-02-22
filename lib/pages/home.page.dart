@@ -43,17 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: Icon(
           _selectedTab == 0 ? Icons.leaderboard : Icons.leaderboard_outlined,
         ),
-        label: "Leaders",
+        label: 'Leaders',
       ),
       BottomNavigationBarItem(
         icon: Icon(_selectedTab == 1 ? Icons.gamepad : Icons.gamepad_outlined),
-        label: "Play",
+        label: 'Play',
       ),
       BottomNavigationBarItem(
         icon: Icon(
           _selectedTab == 2 ? Icons.settings : Icons.settings_outlined,
         ),
-        label: "Settings",
+        label: 'Settings',
       ),
     ];
 
