@@ -7,7 +7,7 @@ class GameInputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GameController game = GameProvider.of(context);
+    final GameController game = GameProvider.of(context);
 
     return ListenableBuilder(
       listenable: game,
@@ -17,11 +17,11 @@ class GameInputWidget extends StatelessWidget {
           spacing: 8,
           children: [
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 280, minWidth: 100),
+              constraints: const BoxConstraints(maxWidth: 280, minWidth: 100),
               child: TextField(
                 controller: game.textController,
-                decoration: InputDecoration(
-                  hintText: "Enter the number",
+                decoration: const InputDecoration(
+                  hintText: 'Enter the number',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: .number,
@@ -33,13 +33,13 @@ class GameInputWidget extends StatelessWidget {
               children: [
                 FilledButton.icon(
                   onPressed: game.isGuessed ? game.reset : game.checkGuess,
-                  label: Text(game.isGuessed ? "Restart" : "Try to guess"),
+                  label: Text(game.isGuessed ? 'Restart' : 'Try to guess'),
                   icon: Icon(
                     game.isGuessed ? Icons.refresh : Icons.stream_sharp,
                   ),
                 ),
                 if (game.attempts >= 1 && !game.isGuessed)
-                  IconButton(onPressed: game.reset, icon: Icon(Icons.refresh)),
+                  IconButton(onPressed: game.reset, icon: const Icon(Icons.refresh)),
               ],
             ),
           ],

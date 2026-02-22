@@ -7,7 +7,7 @@ class GameHintWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GameController game = GameProvider.of(context);
+    final GameController game = GameProvider.of(context);
 
     return Text(game.hint);
   }

@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<BottomNavigationBarItem> bottomMenu = [
+    final List<BottomNavigationBarItem> bottomMenu = [
       BottomNavigationBarItem(
         icon: Icon(
           _selectedTab == 0 ? Icons.leaderboard : Icons.leaderboard_outlined,
@@ -41,13 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: const HomeAppBarWidget(),
-      body: Center(
+      body: const Center(
         child: Column(mainAxisAlignment: .center, children: [GameWidget()]),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTab,
         onTap: _onMenuTap,
-        selectedIconTheme: IconThemeData(size: 32),
+        selectedIconTheme: const IconThemeData(size: 32),
         items: bottomMenu,
       ),
     );

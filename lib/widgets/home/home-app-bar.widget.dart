@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../providers/game.provider.dart';
-import '../game/game-hint.widget.dart';
+import 'package:guess_the_number_game/providers/game.provider.dart';
+import 'package:guess_the_number_game/widgets/game/game-hint.widget.dart';
 
 class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBarWidget({super.key});
@@ -18,7 +18,7 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         return AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text("🎯 Attempts: ${game.attempts}"), GameHintWidget()],
+            children: [Text('🎯 Attempts: ${game.attempts}'), const GameHintWidget()],
           ),
         );
       },

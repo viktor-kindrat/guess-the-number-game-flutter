@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import '../controllers/game.controller.dart';
+import 'package:guess_the_number_game/controllers/game.controller.dart';
 
 class GameProvider extends InheritedWidget {
   final GameController controller;
 
   const GameProvider({
-    super.key,
-    required this.controller,
-    required super.child,
+    required this.controller, required super.child, super.key,
   });
 
   static GameController of(BuildContext context) {

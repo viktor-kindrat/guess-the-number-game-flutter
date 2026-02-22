@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+
+import 'package:flutter/material.dart';
 
 class GameController with ChangeNotifier {
   final TextEditingController textController = TextEditingController();
@@ -22,7 +23,7 @@ class GameController with ChangeNotifier {
   void checkGuess() {
     if (isGuessed) return;
 
-    int? guess = int.tryParse(textController.text);
+    final int? guess = int.tryParse(textController.text);
 
     if (guess != null) {
       if (guess == secretNumber) {
