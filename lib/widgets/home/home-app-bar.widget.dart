@@ -18,7 +18,10 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         return AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text('🎯 Attempts: ${game.attempts}'), const GameHintWidget()],
+            children: [
+              Text('🎯 Attempts: ${game.attempts}'),
+              const GameHintWidget(),
+            ],
           ),
         );
       },
