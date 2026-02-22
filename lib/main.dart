@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import './pages/home.page.dart';
 import './providers/game.provider.dart';
 import './controllers/game.controller.dart';
+=======
+import 'package:guess_the_number_game/pages/home.page.dart';
+>>>>>>> main
 
 void main() {
   runApp(const MyApp());
