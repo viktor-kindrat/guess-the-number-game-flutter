@@ -39,7 +39,10 @@ class GameInputWidget extends StatelessWidget {
                   ),
                 ),
                 if (game.attempts >= 1 && !game.isGuessed)
-                  IconButton(onPressed: game.reset, icon: const Icon(Icons.refresh)),
+                  IconButton(
+                    onPressed: game.reset,
+                    icon: const Icon(Icons.refresh),
+                  ),
               ],
             ),
           ],
