@@ -8,7 +8,12 @@ class GameInputWidget extends StatelessWidget {
   final VoidCallback onReset;
 
   const GameInputWidget({
-    required this.textController, required this.isGuessed, required this.attempts, required this.onCheckGuess, required this.onReset, super.key,
+    required this.textController,
+    required this.isGuessed,
+    required this.attempts,
+    required this.onCheckGuess,
+    required this.onReset,
+    super.key,
   });
 
   @override
