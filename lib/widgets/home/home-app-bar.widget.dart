@@ -5,9 +5,7 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String hint;
 
   const HomeAppBarWidget({
-    super.key,
-    required this.attempts,
-    required this.hint,
+    required this.attempts, required this.hint, super.key,
   });
 
   @override
@@ -18,7 +16,7 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [Text("🎯 Attempts: $attempts"), Text(hint)],
+        children: [Text('🎯 Attempts: $attempts'), Text(hint)],
       ),
     );
   }

@@ -8,12 +8,7 @@ class GameInputWidget extends StatelessWidget {
   final VoidCallback onReset;
 
   const GameInputWidget({
-    super.key,
-    required this.textController,
-    required this.isGuessed,
-    required this.attempts,
-    required this.onCheckGuess,
-    required this.onReset,
+    required this.textController, required this.isGuessed, required this.attempts, required this.onCheckGuess, required this.onReset, super.key,
   });
 
   @override
@@ -23,11 +18,11 @@ class GameInputWidget extends StatelessWidget {
       spacing: 8,
       children: [
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 280, minWidth: 100),
+          constraints: const BoxConstraints(maxWidth: 280, minWidth: 100),
           child: TextField(
             controller: textController,
-            decoration: InputDecoration(
-              hintText: "Enter the number",
+            decoration: const InputDecoration(
+              hintText: 'Enter the number',
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
@@ -39,11 +34,11 @@ class GameInputWidget extends StatelessWidget {
           children: [
             FilledButton.icon(
               onPressed: isGuessed ? onReset : onCheckGuess,
-              label: Text(isGuessed ? "Restart" : "Try to guess"),
+              label: Text(isGuessed ? 'Restart' : 'Try to guess'),
               icon: Icon(isGuessed ? Icons.refresh : Icons.stream_sharp),
             ),
             if (attempts >= 1 && !isGuessed)
-              IconButton(onPressed: onReset, icon: Icon(Icons.refresh)),
+              IconButton(onPressed: onReset, icon: const Icon(Icons.refresh)),
           ],
         ),
       ],

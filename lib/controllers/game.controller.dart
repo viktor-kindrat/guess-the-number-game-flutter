@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+
+import 'package:flutter/material.dart';
 
 class GameController {
   final TextEditingController textController = TextEditingController();
@@ -20,7 +21,7 @@ class GameController {
   void checkGuess() {
     if (isGuessed) return;
 
-    int? guess = int.tryParse(textController.text);
+    final int? guess = int.tryParse(textController.text);
     textController.clear();
 
     if (guess != null) {
