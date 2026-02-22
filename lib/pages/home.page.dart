@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guess_the_number_game/controllers/game.controller.dart';
 import 'package:guess_the_number_game/widgets/game/game.widget.dart';
 import 'package:guess_the_number_game/widgets/home/home-app-bar.widget.dart';
 
@@ -11,11 +12,28 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedTab = 1;
+  final GameController _gameController = GameController();
 
   void _onMenuTap(int index) {
     setState(() {
       _selectedTab = index;
     });
+  }
+
+  void _onCheckGuess() {
+    _gameController.checkGuess();
+    setState(() {});
+  }
+
+  void _onReset() {
+    _gameController.reset();
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _gameController.dispose();
+    super.dispose();
   }
 
   @override
@@ -40,9 +58,23 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
 
     return Scaffold(
-      appBar: const HomeAppBarWidget(),
+      appBar: HomeAppBarWidget(
+        attempts: _gameController.attempts,
+        hint: _gameController.hint,
+      ),
       body: Center(
-        child: Column(mainAxisAlignment: .center, children: [GameWidget()]),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GameWidget(
+              textController: _gameController.textController,
+              isGuessed: _gameController.isGuessed,
+              attempts: _gameController.attempts,
+              onCheckGuess: _onCheckGuess,
+              onReset: _onReset,
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTab,

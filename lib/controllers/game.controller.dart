@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class GameController with ChangeNotifier {
+class GameController {
   final TextEditingController textController = TextEditingController();
   int secretNumber = Random().nextInt(100) + 1;
   int attempts = 0;
@@ -15,32 +15,31 @@ class GameController with ChangeNotifier {
     isGuessed = false;
 
     textController.clear();
-
-    notifyListeners();
   }
 
   void checkGuess() {
     if (isGuessed) return;
 
     int? guess = int.tryParse(textController.text);
+    textController.clear();
 
     if (guess != null) {
       if (guess == secretNumber) {
         isGuessed = true;
         hint = 'Guessed! 🎉';
-        textController.clear();
-
-        notifyListeners();
 
         return;
       }
 
       attempts++;
       hint = guess > secretNumber ? 'Try less ⬇️' : 'Try more ⬆️';
-
-      textController.clear();
-
-      notifyListeners();
+    } else {
+      attempts++;
+      hint = 'Invalid! ❌';
     }
+  }
+
+  void dispose() {
+    textController.dispose();
   }
 }

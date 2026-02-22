@@ -1,50 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:guess_the_number_game/controllers/game.controller.dart';
-import 'package:guess_the_number_game/providers/game.provider.dart';
 
 class GameInputWidget extends StatelessWidget {
-  const GameInputWidget({super.key});
+  final TextEditingController textController;
+  final bool isGuessed;
+  final int attempts;
+  final VoidCallback onCheckGuess;
+  final VoidCallback onReset;
+
+  const GameInputWidget({
+    super.key,
+    required this.textController,
+    required this.isGuessed,
+    required this.attempts,
+    required this.onCheckGuess,
+    required this.onReset,
+  });
 
   @override
   Widget build(BuildContext context) {
-    GameController game = GameProvider.of(context);
-
-    return ListenableBuilder(
-      listenable: game,
-      builder: (context, _) {
-        return Column(
-          mainAxisAlignment: .center,
-          spacing: 8,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: 8,
+      children: [
+        ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 280, minWidth: 100),
+          child: TextField(
+            controller: textController,
+            decoration: InputDecoration(
+              hintText: "Enter the number",
+              border: OutlineInputBorder(),
+            ),
+            keyboardType: TextInputType.number,
+            enabled: !isGuessed,
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 280, minWidth: 100),
-              child: TextField(
-                controller: game.textController,
-                decoration: InputDecoration(
-                  hintText: "Enter the number",
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: .number,
-                enabled: !game.isGuessed,
-              ),
+            FilledButton.icon(
+              onPressed: isGuessed ? onReset : onCheckGuess,
+              label: Text(isGuessed ? "Restart" : "Try to guess"),
+              icon: Icon(isGuessed ? Icons.refresh : Icons.stream_sharp),
             ),
-            Row(
-              mainAxisAlignment: .center,
-              children: [
-                FilledButton.icon(
-                  onPressed: game.isGuessed ? game.reset : game.checkGuess,
-                  label: Text(game.isGuessed ? "Restart" : "Try to guess"),
-                  icon: Icon(
-                    game.isGuessed ? Icons.refresh : Icons.stream_sharp,
-                  ),
-                ),
-                if (game.attempts >= 1 && !game.isGuessed)
-                  IconButton(onPressed: game.reset, icon: Icon(Icons.refresh)),
-              ],
-            ),
+            if (attempts >= 1 && !isGuessed)
+              IconButton(onPressed: onReset, icon: Icon(Icons.refresh)),
           ],
-        );
-      },
+        ),
+      ],
     );
   }
 }
