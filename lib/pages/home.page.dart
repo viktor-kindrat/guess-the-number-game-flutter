@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:guess_the_number_game/widgets/game/game.widget.dart';
+import 'package:guess_the_number_game/widgets/home/home-app-bar.widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -16,8 +18,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  List<BottomNavigationBarItem> get _bottomMenu {
-    return [
+  @override
+  Widget build(BuildContext context) {
+    final List<BottomNavigationBarItem> bottomMenu = [
       BottomNavigationBarItem(
         icon: Icon(
           _selectedTab == 0 ? Icons.leaderboard : Icons.leaderboard_outlined,
@@ -35,22 +38,17 @@ class _MyHomePageState extends State<MyHomePage> {
         label: 'Settings',
       ),
     ];
-  }
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const HomeAppBarWidget(),
       body: const Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [Text('hello world')],
-        ),
+        child: Column(mainAxisAlignment: .center, children: [GameWidget()]),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTab,
         onTap: _onMenuTap,
         selectedIconTheme: const IconThemeData(size: 32),
-        items: _bottomMenu,
+        items: bottomMenu,
       ),
     );
   }
